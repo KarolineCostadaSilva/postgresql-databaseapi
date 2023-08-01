@@ -1,8 +1,11 @@
+import datetime
+from book import Book
+from person import Person
 class Loan:
-    def __init__(self, loan_date, id_book, cpf):
+    def __init__(self, loan_date, Book, Person):
         self.loan_date = loan_date
-        self.id_book = id_book
-        self.cpf = cpf
+        self.id_book = Book.get_id()
+        self.cpf = Person.get_cpf()
 
     # get
     def get_loan_date(self):
@@ -15,8 +18,8 @@ class Loan:
         return self.cpf
 
     # set
-    def set_loan_date(self, loan_date):
-        self.loan_date = loan_date
+    def set_loan_date(self):
+        self.loan_date = datetime.date.today()
         return 'Loan date changed successfully!'
 
     def set_id_book(self, id_book):
@@ -26,4 +29,3 @@ class Loan:
     def set_cpf(self, cpf):
         self.cpf = cpf
         return 'CPF changed successfully!'
-

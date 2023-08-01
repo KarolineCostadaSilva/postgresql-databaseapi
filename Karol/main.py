@@ -13,8 +13,9 @@ if __name__ == "__main__":
     db_manager = DatabaseManager(db_name, db_user, db_password, db_host, db_port)
 
     # Criar e popular as tabelas
-    # db_manager.create_tables()
-    # db_manager.populate_tables()
+    db_manager.create_tables()
+    db_manager.populate_tables()
+    # db_manager.drop_tables()
 
     # Consultas
     num_books = db_manager.count_books()

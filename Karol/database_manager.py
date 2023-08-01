@@ -2,6 +2,7 @@ from book import Book
 from person import Person
 from loan import Loan
 import psycopg2
+import datetime
 
 class DatabaseManager:
     def __init__(self, db_name, db_user, db_password, db_host, db_port):
@@ -37,6 +38,7 @@ class DatabaseManager:
                 CREATE TABLE IF NOT EXISTS Book (
                     id SERIAL PRIMARY KEY,
                     title TEXT,
+                    computation TEXT,
                     height FLOAT,
                     width FLOAT
                 )
@@ -77,11 +79,11 @@ class DatabaseManager:
 
             # Inserindo dados na tabela Livro
             cursor.execute("""
-                INSERT INTO Book (title, height, width)
+                INSERT INTO Book (title, computation, height, width)
                 VALUES
-                    ('Livro A', 20.0, 15.0),
-                    ('Livro B', 18.5, 12.5),
-                    ('Livro C', 22.0, 16.0)
+                    ('Livro A', 'Dados', 20.0, 15.0),
+                    ('Livro B', 'Machine Learning', 18.5, 12.5),
+                    ('Livro C', 'Robotica', 22.0, 16.0)
             """)
 
             # Inserindo dados na tabela Pessoa
@@ -90,6 +92,15 @@ class DatabaseManager:
                 VALUES
                     ('11111111111', 'Fulano da Silva', 'Rua 1', 123, 'Apto 101'),
                     ('22222222222', 'Beltrana Souza', 'Rua 2', 456, 'Apto 202')
+            """)
+
+            # Inserindo dados na tabela Emprestimo
+            cursor.execute("""
+                INSERT INTO Loan (loan_date, id_book, cpf)
+                VALUES
+                    (CURRENT_DATE, 1, '11111111111'),
+                    (CURRENT_DATE, 2, '22222222222'), 
+                    (CURRENT_DATE, 3, '11111111111')
             """)
 
             # Comitando as alterações
@@ -119,8 +130,8 @@ class DatabaseManager:
             cursor.execute("""
                 SELECT p.name, b.title
                 FROM Loan l
-                JOIN Person p ON l.person_cpf = p.cpf
-                JOIN Book b ON l.book_id = b.id
+                JOIN Person p ON l.cpf = p.cpf
+                JOIN Book b ON l.id_book = b.id
             """)
             books_by_person = cursor.fetchall()
 
@@ -132,12 +143,11 @@ class DatabaseManager:
     def get_book_location(self, book_id):
         try:
             cursor = self.conn.cursor()
-
             cursor.execute("""
                 SELECT p.street, p.number, p.apartment
                 FROM Loan l
-                JOIN Person p ON l.person_cpf = p.cpf
-                WHERE l.book_id = %s
+                JOIN Person p ON l.cpf = p.cpf
+                WHERE l.id_book = %s
             """, (book_id,))
             location = cursor.fetchone()
 
@@ -145,6 +155,50 @@ class DatabaseManager:
         except psycopg2.Error as e:
             print("Erro ao obter a localização do livro:", e)
             return None
+
+    # deletando colunas
+    def delete_book(self, book_id):
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("DELETE FROM Book WHERE id = %s", (book_id,))
+            self.conn.commit()
+            print("Livro deletado com sucesso.")
+        except psycopg2.Error as e:
+            print("Erro ao deletar o livro:", e)
+            self.conn.rollback()
+
+    def delete_person(self, person_cpf):
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("DELETE FROM Person WHERE cpf = %s", (person_cpf,))
+            self.conn.commit()
+            print("Pessoa deletada com sucesso.")
+        except psycopg2.Error as e:
+            print("Erro ao deletar a pessoa:", e)
+            self.conn.rollback()
+
+    def delete_loan(self, loan_id):
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("DELETE FROM Loan WHERE id_loan = %s", (loan_id,))
+            self.conn.commit()
+            print("Empréstimo deletado com sucesso.")
+        except psycopg2.Error as e:
+            print("Erro ao deletar o empréstimo:", e)
+            self.conn.rollback()
+
+    # deletando tabelas
+    def drop_tables(self):
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("DROP TABLE IF EXISTS Loan")
+            cursor.execute("DROP TABLE IF EXISTS Person")
+            cursor.execute("DROP TABLE IF EXISTS Book")
+            self.conn.commit()
+            print("Tabelas deletadas com sucesso.")
+        except psycopg2.Error as e:
+            print("Erro ao deletar as tabelas:", e)
+            self.conn.rollback()
 
     def close_connection(self):
         if self.conn:

@@ -1,8 +1,4 @@
-from book import Book
-from person import Person
-from loan import Loan
 import psycopg2
-import datetime
 
 class DatabaseManager:
     def __init__(self, db_name, db_user, db_password, db_host, db_port):

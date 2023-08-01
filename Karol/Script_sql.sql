@@ -1,10 +1,12 @@
 -- CREATE database livraria;
-
+-- \c livraria -- comando semelhante a USE db_name em mysql
 ---------------------------------------------------
 -- ver todas as tabelas criadas no banco de dados
+
 SELECT table_name
 FROM information_schema.tables
 WHERE table_schema = 'public';
+
 ---------------------------------------------------
 CREATE TABLE IF NOT EXISTS book (
 id SERIAL PRIMARY KEY,
@@ -41,9 +43,9 @@ values
 
 insert into Loan (loan_date, id_book, cpf)
 values
-(now(), 1, '11111111111'),
-(now(), 2, '22222222222'),
-(now(), 1, '11111111111');
+(CURRENT_DATE, 1, '11111111111'),
+(CURRENT_DATE, 2, '22222222222'),
+(CURRENT_DATE, 1, '11111111111');
 
 --------------------------------------------------------------
 select * from book;

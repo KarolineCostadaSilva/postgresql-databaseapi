@@ -31,7 +31,7 @@ Identificando as ENTIDADES seguidas de seus ATRIBUTOS:
 
 |  LIVRO   |          |          |          |  
 | -------- | -------- | -------- | -------- | 
-|    ID    | genero   | altura   | largura  |          
+| ID_livro | genero   | altura   | largura  |          
 
 |  LEITOR  |          |          |          |              | 
 | -------- | -------- | -------- | -------- | ------------ | 

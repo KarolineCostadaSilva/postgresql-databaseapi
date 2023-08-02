@@ -8,7 +8,7 @@
 
 
 
-### Minimundo
+## Minimundo
 
 Rielson gostaria de construir um banco de dados para testar suas habilidades, então ele definiu um problema que tinha uma estante com livros de computação, altura, largura e um identificador para cada livro que estava nela, e uma pessoa que adora ler que tem um nome, um CPF, um endereço com rua, número e apartamento. Rielson decidiu que as regras seriam: a pessoa pode pegar quantos livros quiser da estante e mais de uma pessoa poderia tirar livros da estante.
 
@@ -27,24 +27,33 @@ Rielson gostaria de construir um banco de dados para testar suas habilidades, en
 Identificando as ENTIDADES seguidas de seus ATRIBUTOS:
 
 - LIVRO - ID, gênero (literário), altura, largura
-- LEITOR - cpf, nome, rua, número, apartamento
+- LEITOR - CPF, nome, rua, número, apartamento
 
 |  LIVRO   |          |          |          |  
 | -------- | -------- | -------- | -------- | 
-|     ID   | gênero   | altura   | largura  |          
+|    ID    | genero   | altura   | largura  |          
 
 |  LEITOR  |          |          |          |              | 
 | -------- | -------- | -------- | -------- | ------------ | 
-|   CPF    |   nome   |   rua    |  número  | apartamento  | 
+|   CPF    |   nome   |   rua    |  numero  | apartamento  | 
 
 Como o enunciado fala da situação de retirada de livros da estante por diversas pessoas, foi necessário criar uma nova entidade chamada EMPRÉSTIMO onde liga o identificador do livro com o identificador (CPF) do leitor.
 
-- EMPRESTIMO - ID_empréstimo, ID_livro, cpf
+- EMPRESTIMO - ID_empréstimo, ID_livro, CPF
 
 | EMPRESTIMO     |          |          |     
 | -------------- | -------- | -------- | 
-| ID_emprestimo  | ID_livro |   cpf    |
+| ID_emprestimo  | ID_livro |   CPF    |
 
 ## Modelo Conceitual
 
-Para explicar melhor o relacionamento entre as entidades, foi elaborado um diagrama ENTIDADE-RELACIONAMENTO (ER) referente ao modelo conceitual do Banco de Dados do enunciado.
+Para explicar melhor o relacionamento entre as entidades, foi elaborado um diagrama ENTIDADE-RELACIONAMENTO (ER) referente ao modelo conceitual do Banco de Dados do enunciado. O diagrama pode ser conferido abaixo:
+
+<div>
+  <div style="display: inline_block"><br>
+    <img align="left" height="250" alt="coding-time" src="assets/modelo-conceitual.png">
+ </div>
+</div>
+
+
+

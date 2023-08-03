@@ -62,6 +62,10 @@ Em seguida foi feita a conversão da modelagem conceitual para a lógica onde é
   <img  height="250" alt="coding-time" src="assets/modelo-logico.png">
 </div>
 
+### Modelagem Física (SQL)
 
+Por último foi realizada a modelagem física na linguagem SQL, onde foi criada uma database chamada de "estande" com as tabelas das entidades representadas nos modelos anteriores. O Script do SQL pode ser conferido [aqui](https://github.com/KarolineCostadaSilva/postgresql-databaseapi/blob/main/Johnny/Script.sql).
 
+## CODIFICAÇÃO EM PYTHON
 
+Para construir um arquivo de conexão com o PostgreSQL utilizando Python, foi necessário instalar a biblioteca "psycopg2". Após isso, foi realizada uma codificação básica que demonstra a conexão com o banco de dados seguida da criação e população das tabelas. O código pode ser conferido [aqui](https://github.com/KarolineCostadaSilva/postgresql-databaseapi/blob/main/Johnny/conecction_database.py) e conta com um simples menu em que o usuário pode comandar as seguintes tarefas: criação das tabelas, população das tabelas e opção de mostrar conteúdo de uma tabela em específico.

@@ -8,7 +8,7 @@
 
 
 
-## Minimundo
+## MINIMUNDO
 
 Rielson gostaria de construir um banco de dados para testar suas habilidades, então ele definiu um problema que tinha uma estante com livros de computação, altura, largura e um identificador para cada livro que estava nela, e uma pessoa que adora ler que tem um nome, um CPF, um endereço com rua, número e apartamento. Rielson decidiu que as regras seriam: a pessoa pode pegar quantos livros quiser da estante e mais de uma pessoa poderia tirar livros da estante.
 
@@ -22,7 +22,7 @@ Rielson gostaria de construir um banco de dados para testar suas habilidades, en
     - Qual pessoa pegou qual livro?
     - Onde está este livro? (retornar endereço da pessoa que pegou o livro)
 
-## Modelo Relacional
+## MODELAGEM
 
 Identificando as ENTIDADES seguidas de seus ATRIBUTOS:
 
@@ -45,15 +45,23 @@ Como o enunciado fala da situação de retirada de livros da estante por diversa
 | -------------- | -------- | -------- | 
 | ID_emprestimo  | ID_livro |   CPF    |
 
-## Modelo Conceitual
+### Modelo Conceitual
 
 Para explicar melhor o relacionamento entre as entidades, foi elaborado um diagrama ENTIDADE-RELACIONAMENTO (ER) referente ao modelo conceitual do Banco de Dados do enunciado. O diagrama pode ser conferido abaixo:
 
-<div>
-  <div style="display: inline_block"><br>
-    <img align="left" height="250" alt="coding-time" src="assets/modelo-conceitual.png">
- </div>
+
+<div style="display: block"><br>
+  <img  height="250" alt="coding-time" src="assets/modelo-conceitual.png">
 </div>
+
+### Modelo Lógico
+
+Em seguida foi feita a conversão da modelagem conceitual para a lógica onde é possível ver as chaves estrangeiras e o tipo de cada atributo. O diagrama pode ser conferido abaixo:
+
+<div style="display: block"><br>
+  <img  height="250" alt="coding-time" src="assets/modelo-logico.png">
+</div>
+
 
 
 

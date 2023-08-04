@@ -41,6 +41,15 @@ def popular_tabelas(cursor):
                     (4, 1, 33333333333),
                     (5, 3, 11111111111),
                     (6, 2, 11111111111);""")
+    
+def updating_names(cursor):
+    cursor.execute("""UPDATE leitor
+                    SET nome = 'Bruno Reis'
+                    WHERE nome = 'Bruno Campello';""")
+    
+    cursor.execute("""UPDATE leitor
+                    SET nome = 'Karoline Juliana'
+                    WHERE nome = 'Karolina Juliana';""")
 
 def mostrar_tabela(cursor, tabela):
     cursor.execute(f"SELECT * FROM {tabela};")
@@ -65,8 +74,9 @@ def main():
             print("1. Criar tabelas (pré definidas)")
             print("2. Popular tabelas")
             print("3. Mostrar conteúdo de uma tabela")
-            print("4. Sair")
-            escolha = input("Escolha uma opção (1/2/3/4): ")
+            print("4. Atualizar dados")
+            print("5. Sair")
+            escolha = input("Escolha uma opção (1/2/3/4/5): ")
 
             if escolha == '1':
                 criar_tabelas(cursor)
@@ -78,6 +88,9 @@ def main():
                 tabela = input("\nDigite o nome da tabela (livro/leitor/emprestimo): ")
                 mostrar_tabela(cursor, tabela)
             elif escolha == '4':
+                print("\nNomes atualizados!")
+                updating_names(cursor)
+            elif escolha == '5':
                 print("\nEncerrando o programa.")
                 break
             else:

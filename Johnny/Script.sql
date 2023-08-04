@@ -66,7 +66,11 @@ SELECT * FROM emprestimo;
 
 --------------------------------------------------------
 
---CONSERTANDO O NOME DO COLEGA QUE CONFUNDI
+--CONSERTANDO OS NOMES DOS COLEGAS QUE CONFUNDI
 UPDATE leitor
 SET nome = 'Bruno Reis'
 WHERE nome = 'Bruno Campello';
+
+UPDATE leitor
+SET nome = 'Karoline Juliana'
+WHERE nome = 'Karolina Juliana';
